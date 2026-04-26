@@ -2,29 +2,24 @@ import React, {useEffect} from "react";
 import BookRender from "./components/BookRender";
 import {useDispatch, useSelector} from "react-redux";
 import AddBook from "./components/AddBook";
+import "./assets/App.scss";
 
 const App = () => {
   const dispatch = useDispatch();
-  const addBook = useSelector((state) => state?.item);
-  const book = useSelector((state) => state);
-  console.log(book);
-
-  useEffect(() => {
-    dispatch({
-      type: "ADD_BOOK",
-      item: {
-        id: 2,
-        title: "Books",
-        author: "Abdulla Qodiriy",
-        isRead: false,
-      },
-    });
-  }, []);
+  const book = useSelector((state) => state.addModal);
   return (
-    <div>
-      <input type="search" placeholder="Search book..." />
-      <div>
+    <div className="app">
+      <input
+        className="app__search"
+        onChange={(e) =>
+          dispatch({type: "SEARCH", search: e.target.value.trim()})
+        }
+        type="search"
+        placeholder="Search book..."
+      />
+      <div className="app__top">
         <button
+          className="app__top-filters"
           onClick={() => {
             dispatch({type: "ALL"});
           }}
@@ -32,6 +27,7 @@ const App = () => {
           All
         </button>
         <button
+          className="app__top-filters"
           onClick={() => {
             dispatch({type: "ONLY_READ"});
           }}
@@ -39,6 +35,7 @@ const App = () => {
           Only read
         </button>
         <button
+          className="app__top-filters"
           onClick={() => {
             dispatch({type: "ONLY_UNREAD"});
           }}
@@ -46,6 +43,7 @@ const App = () => {
           Only unread
         </button>
         <button
+          className="app__top-add"
           onClick={() => {
             dispatch({type: "MODAL"});
           }}
@@ -53,8 +51,10 @@ const App = () => {
           Add book
         </button>
       </div>
-      <BookRender />
-      {book?.addModal ? <AddBook /> : null}
+      <div className="app__books-render">
+        <BookRender />
+      </div>
+      {book ? <AddBook /> : null}
     </div>
   );
 };

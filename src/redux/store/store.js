@@ -4,9 +4,14 @@ const init = {
   books: [],
   filter: "ALL",
   len: 0,
-  addModal: false
+  addModal: false,
+  search: ""
 };
-
+const localBooks = localStorage.getItem("books");
+if (localBooks) {
+  init.books = JSON.parse(localBooks);
+  init.len = init.books.length
+}
 const bookReducer = (state = init, action) => {
   switch (action.type) {
     case "ADD_BOOK":
@@ -41,9 +46,7 @@ const bookReducer = (state = init, action) => {
         ...state,
         books: state.books.map((item) => {
           if (item.id == action.id) {
-            item.isRead = !item.isRead
-            console.log(item);
-            
+            item.isRead = !item.isRead            
           }
           return item;
         }),
@@ -52,6 +55,12 @@ const bookReducer = (state = init, action) => {
       return {
         ...state,
         addModal: !state.addModal,
+      }
+    case "SEARCH":
+      return {
+        ...state,
+        search: action.search,
+        filter: "SEARCH"
       }
     default:
       return state;

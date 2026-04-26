@@ -1,0 +1,300 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  background-color: rgb(19, 16, 16);
+  padding: 10% 15px;
+  gap: 10px;
+
+  &__search {
+    width: 100%;
+    max-width: 700px;
+    padding: 10px;
+    border-radius: 6px;
+    outline: none;
+    font-size: 13px;
+    background-color: rgb(43, 41, 41);
+    border: 1px solid rgb(139, 124, 124);
+    color: white;
+  }
+
+  &__top {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    justify-content: start;
+    gap: 10px;
+    padding: 0px 79px 0px 0px;
+    flex-wrap: wrap;
+  }
+
+  &__top-filters {
+    padding: 5px 10px;
+    border-radius: 6px;
+    color: white;
+    // background-color: rgba(84, 118, 146, 0.712);
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.151);
+    font-weight: 300;
+    outline: none;
+    &:hover {
+      opacity: 0.9;
+      cursor: pointer;
+    }
+
+    &:active {
+      background-color: rgba(62, 155, 231, 0.123);
+    }
+  }
+
+  &__top-add {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    color: white;
+    font-weight: 300;
+    background-color: green;
+    border: 1px solid rgb(17, 172, 17);
+    outline: none;
+    // align-self: end;
+    &:hover {
+      opacity: 0.9;
+      cursor: pointer;
+    }
+
+    &:active {
+      background-color: rgb(7, 177, 7);
+    }
+  }
+
+  &__books-render {
+    // background-color: red;
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0px 0px 0px;
+    border-top: 1px solid rgba(255, 255, 255, 0.151);
+  }
+
+  &__items {
+    // background-color: red;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: end;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.151);
+    background-color: rgba(62, 155, 231, 0.123);
+  }
+
+  &__book-top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  &__book-top-left {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &__book-title {
+    font-size: 18px;
+    color: white;
+  }
+
+  &__book-author {
+    font-size: 14px;
+    color: gray;
+    padding: 2px 6px;
+    border-radius: 6px;
+    // background-color: purple;
+    color: white;
+    font-weight: 300;
+    // border: 1px solid rgb(182, 19, 182);
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.151);
+    opacity: 0.8;
+  }
+
+  &__book-top-right {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+  }
+
+  &__book-status {
+    padding: 1px 10px;
+    // width: 100px;
+    border-radius: 5px;
+    font-size: 13px;
+    // color: rgb(255, 153, 0);
+    // background-color: rgba(224, 160, 21, 0.219);
+    // border: 1px solid rgba(255, 153, 0, 0.514);
+    color: rgb(56, 168, 12);
+    background-color: rgba(15, 155, 22, 0.219);
+    border: 1px solid rgba(56, 168, 12, 0.397);
+  }
+
+  .unread {
+    color: rgb(255, 153, 0);
+    background-color: rgba(224, 160, 21, 0.219);
+    border: 1px solid rgba(255, 153, 0, 0.514);
+  }
+
+  .read {
+    color: rgb(56, 168, 12);
+    background-color: rgba(15, 155, 22, 0.219);
+    border: 1px solid rgba(56, 168, 12, 0.397);
+  }
+
+  &__book-input {
+    padding: 4px;
+    outline: none;
+    width: 17px;
+    height: 17px;
+    // border: 1px solid red ;
+  }
+
+  .app__book-input {
+    /* 1. Remove the default browser checkbox styling */
+    appearance: none;
+    -webkit-appearance: none;
+
+    /* 2. Create the custom box */
+    width: 17px;
+    height: 17px;
+    border: 2px solid #3b82f6; /* Modern blue border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer;
+
+    /* 3. Center the checkmark */
+    display: inline-grid;
+    place-content: center;
+    transition: all 0.1s ease-in-out;
+  }
+
+  /* Hover state */
+  .app__book-input:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+
+  /* Checked state (when item.isRead is true) */
+  .app__book-input:checked {
+    background-color: #3b82f6;
+  }
+
+  /* Create the checkmark inside the box using a pseudo-element */
+  .app__book-input:checked::before {
+    content: "✓";
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  &__book-delete {
+    color: white;
+    padding: 2px 4px;
+    border-radius: 5px;
+    font-size: 13px;
+    border: 1px solid rgba(255, 255, 255, 0.151);
+    background-color: rgba(255, 0, 0, 0.082);
+
+    &:hover {
+      opacity: 0.9;
+      cursor: pointer;
+    }
+
+    &:active {
+      background-color: rgb(197, 14, 14);
+    }
+  }
+
+  &__add-form {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(4, 60, 124, 0.027);
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    padding: 17% 10px 10px 10px;
+  }
+
+  &__add-box {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+    padding: 15px 20px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.151);
+  }
+
+  &__add-title {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.445);
+  }
+
+  &__add-f-input {
+    outline: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: rgba(24, 22, 22, 0.849);
+    border: 1px solid rgba(255, 255, 255, 0.151);
+    color: white;
+  }
+
+  &__add-f-bot {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  &__add-f-btn {
+    padding: 3px 5px;
+    font-size: 13px;
+    border-radius: 5px;
+    background-color: rgba(24, 22, 22, 0);
+    border: 1px solid rgba(255, 255, 255, 0.151);
+    color: white;
+    outline: none;
+  }
+
+  &__add-f-btn-add {
+    background-color: green;
+
+    &:hover {
+      opacity: 0.9;
+      cursor: pointer;
+    }
+
+    &:active {
+      background-color: rgb(7, 177, 7);
+    }
+  }
+}
