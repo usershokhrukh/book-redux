@@ -2,13 +2,13 @@ import {createStore} from "redux";
 
 const init = {
   books: [{
-    id: null,
+    id: 1,
     title: "Fight Club",
     author: "David Fincher",
     isRead: true,
   }],
   filter: "ALL",
-  len: 0,
+  len: 1,
   addModal: false,
   search: ""
 };
